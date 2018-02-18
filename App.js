@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Question from './question';
+import TextBubble from './textBubble';
 import { AppButton } from './appButton';
 import { QUESTIONS_AND_ANSWERS, FINAL_ANSWER } from "./shared/questionsAndAnswers";
 
@@ -14,18 +14,18 @@ export default class App extends Component {
 
   render() {
     let text = QUESTIONS_AND_ANSWERS[this.state.currentIndex].question;
-    let ans = QUESTIONS_AND_ANSWERS[this.state.currentIndex].answer;
     return (
-
       <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <Question text={text} />
+        <View style={[styles.centerItems, styles.textBubbleContainer, styles.topContainer]}>
+          <TextBubble text={text}/>
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={[styles.centerItems, styles.buttonContainer]}>
           <AppButton title="Yes" />
           <AppButton title="No" />
         </View>
-        <View style={styles.bottomContainer} />
+        <View style={[styles.centerItems, styles.textBubbleContainer, styles.bottomContainer]}>
+          <TextBubble text={text}/>
+        </View>
       </View>
     );
   }
@@ -35,20 +35,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  topContainer: {
-    flex: 4,
-    backgroundColor: 'white',
+  centerItems: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  textBubbleContainer: {
+    flex: 4,
+  },
+  topContainer: {
+    paddingTop: 90,
   },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   bottomContainer: {
-    flex: 4,
-    backgroundColor: 'skyblue'
+    paddingBottom: 90,
   },
 });

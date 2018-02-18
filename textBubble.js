@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default class Question extends Component {
+export default class TextBubble extends Component {
   render() {
     return(
       <Text style={styles.container}>{this.props.text}</Text>
@@ -17,6 +17,5 @@ const styles=StyleSheet.create({
     padding: 18,
     borderRadius: 20,
     overflow: 'hidden',
-    marginTop: 140,
   }
 });
