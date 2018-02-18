@@ -13,18 +13,19 @@ export default class App extends Component {
   }
 
   render() {
-    let text = QUESTIONS_AND_ANSWERS[this.state.currentIndex].question;
+    let question = QUESTIONS_AND_ANSWERS[this.state.currentIndex].question;
+    let answer = QUESTIONS_AND_ANSWERS[this.state.currentIndex].answer;
     return (
       <View style={styles.container}>
         <View style={[styles.centerItems, styles.textBubbleContainer, styles.topContainer]}>
-          <TextBubble text={text}/>
+          <TextBubble text={question}/>
         </View>
         <View style={[styles.centerItems, styles.buttonContainer]}>
           <AppButton title="Yes" />
           <AppButton title="No" />
         </View>
         <View style={[styles.centerItems, styles.textBubbleContainer, styles.bottomContainer]}>
-          <TextBubble text={text}/>
+          <TextBubble text={answer}/>
         </View>
       </View>
     );
