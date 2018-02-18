@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Alert, View, StyleSheet } from "react-native";
+import { Alert, View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 export class AppButton extends Component {
   _onPressButton(btnTitle) {
@@ -7,19 +7,18 @@ export class AppButton extends Component {
   }
   render() {
     return (
-      <View style={styles.buttonContainer}>
-        <Button
-          onPress={(e) => this._onPressButton(this.props.title)}
-          title={this.props.title}
-          color='black'
-        />
-      </View>
+      <TouchableOpacity
+        onPress={(e) => this._onPressButton(this.props.title)}>
+        <Text style={styles.button}>{this.props.title}</Text>
+      </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    width: '40%',
-  },
-})
+  button: {
+    fontSize: 40,
+    marginLeft: 25,
+    marginRight: 25,
+  }
+});
