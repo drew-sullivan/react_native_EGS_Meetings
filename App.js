@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Question from './question';
 import { AppButton } from './appButton';
-import { QUESTIONS, ANSWERS } from "./shared/questionsAndAnswers";
+import { QUESTIONS_AND_ANSWERS, FINAL_ANSWER } from "./shared/questionsAndAnswers";
 
 export default class App extends Component {
   constructor(props) {
@@ -11,13 +11,21 @@ export default class App extends Component {
       currentIndex: 0,
     };
   }
+
   render() {
-    let text = QUESTIONS[this.state.currentIndex];
+    let text = QUESTIONS_AND_ANSWERS[this.state.currentIndex].question;
+    let ans = QUESTIONS_AND_ANSWERS[this.state.currentIndex].answer;
     return (
+
       <View style={styles.container}>
-        <Question text={text} />
-        <AppButton title="Yes" />
-        <AppButton title="No" />
+        <View style={styles.topContainer}>
+          <Question text={text} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <AppButton title="Yes" />
+          <AppButton title="No" />
+        </View>
+        <View style={styles.bottomContainer} />
       </View>
     );
   }
@@ -26,8 +34,21 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+  },
+  topContainer: {
+    flex: 4,
+    backgroundColor: 'white',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomContainer: {
+    flex: 4,
+    backgroundColor: 'skyblue'
   },
 });

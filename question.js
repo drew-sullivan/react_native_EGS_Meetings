@@ -11,7 +11,12 @@ export default class Question extends Component {
 
 const styles=StyleSheet.create({
   container: {
+    fontSize: 50,
     color: "white",
-    backgroundColor: "#00B5EE"
+    backgroundColor: "#00B5EE",
+    padding: 18,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginTop: 140,
   }
 });

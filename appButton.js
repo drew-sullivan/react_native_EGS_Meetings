@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Alert, View } from "react-native";
+import { Button, Alert, View, StyleSheet } from "react-native";
 
 export class AppButton extends Component {
   _onPressButton(btnTitle) {
@@ -7,12 +7,19 @@ export class AppButton extends Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.buttonContainer}>
         <Button
           onPress={(e) => this._onPressButton(this.props.title)}
           title={this.props.title}
+          color='black'
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    width: '40%',
+  },
+})
