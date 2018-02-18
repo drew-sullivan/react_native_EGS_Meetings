@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import TextBubble from './textBubble';
 import { AppButton } from './appButton';
 import { QUESTIONS_AND_ANSWERS, FINAL_ANSWER } from "./shared/questionsAndAnswers";
@@ -12,6 +12,20 @@ export default class App extends Component {
     };
   }
 
+  incrementCurrentIndex = () => {
+    const newCurrentIndex = this.state.currentIndex += 1;
+    this.setState({
+      currentIndex: newCurrentIndex
+    });
+  }
+
+  decrementCurrentIndex = () => {
+    const newCurrentIndex = this.state.currentIndex -= 1;
+    this.setState({
+      currentIndex: newCurrentIndex
+    });
+  }
+
   render() {
     let question = QUESTIONS_AND_ANSWERS[this.state.currentIndex].question;
     let answer = QUESTIONS_AND_ANSWERS[this.state.currentIndex].answer;
@@ -21,11 +35,14 @@ export default class App extends Component {
           <TextBubble text={question}/>
         </View>
         <View style={[styles.centerItems, styles.buttonContainer]}>
-          <AppButton title="Yes" />
-          <AppButton title="No" />
+          <AppButton title="Yes" incrementCurrentIndex={this.incrementCurrentIndex}/>
+          <AppButton title="No" decrementCurrentIndex={this.decrementCurrentIndex}/>
+        </View>
+        <View style={styles.centerItems}>
+          <AppButton title="Previous"/>
         </View>
         <View style={[styles.centerItems, styles.textBubbleContainer, styles.bottomContainer]}>
-          <TextBubble text={answer}/>
+          <TextBubble text={answer} style={{backgroundColor: 'red'}}/>
         </View>
       </View>
     );

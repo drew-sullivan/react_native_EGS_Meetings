@@ -13,9 +13,15 @@ const styles=StyleSheet.create({
   container: {
     fontSize: 50,
     color: "white",
-    backgroundColor: "#00B5EE",
+    backgroundColor: "#241F20",
     padding: 18,
     borderRadius: 20,
     overflow: 'hidden',
+  },
+  firstbackgroundColor: {
+    backgroundColor: "#241F20",
+  },
+  nonFirstbackgroundColor: {
+    backgroundColor: "#00B5EE",
   }
 });

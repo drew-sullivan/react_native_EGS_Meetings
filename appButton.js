@@ -3,13 +3,21 @@ import { Alert, View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 export class AppButton extends Component {
   _onPressButton(btnTitle) {
-    Alert.alert(`You pressed ${btnTitle}!`);
+    if (btnTitle === "Yes") {
+      this.props.incrementCurrentIndex();
+    } else if (btnTitle === "No") {
+      this.props.decrementCurrentIndex();
+    } else {
+      return;
+    }
   }
   render() {
+    const title = this.props.title;
+    const isYesNoButton = title !== "Previous";
     return (
       <TouchableOpacity
         onPress={(e) => this._onPressButton(this.props.title)}>
-        <Text style={styles.button}>{this.props.title}</Text>
+        <Text style={isYesNoButton ? [styles.button, styles.yesNoButton] : [styles.button, styles.prevButton]}>{title}</Text>
       </TouchableOpacity>
     );
   }
@@ -17,8 +25,13 @@ export class AppButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    fontSize: 40,
     marginLeft: 25,
     marginRight: 25,
+  },
+  yesNoButton: {
+    fontSize: 40,
+  },
+  prevButton: {
+    fontSize: 20,
   }
 });
