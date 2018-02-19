@@ -26,7 +26,7 @@ export class AppButton extends Component {
     }
     return (
       <TouchableOpacity
-        onPress={(e) => this._onPressButton(this.props.title)}>
+        onPress={(e) => this._onPressButton(title)}>
         <Text style={isYesNoButton ? yesNoButtonStyles : prevButtonStyles}>{title}</Text>
       </TouchableOpacity>
     );
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   },
   prevButton: {
     marginTop: 10,
+    marginBottom: 10,
     fontSize: 20,
   }
 });
