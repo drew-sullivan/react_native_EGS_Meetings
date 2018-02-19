@@ -26,6 +26,10 @@ export default class App extends Component {
     });
   }
 
+  hideButton = () => {
+
+  }
+
   render() {
     let question = QUESTIONS_AND_ANSWERS[this.state.currentIndex].question;
     let answer = QUESTIONS_AND_ANSWERS[this.state.currentIndex].answer;
@@ -36,10 +40,10 @@ export default class App extends Component {
         </View>
         <View style={[styles.centerItems, styles.buttonContainer]}>
           <AppButton title="Yes" incrementCurrentIndex={this.incrementCurrentIndex}/>
-          <AppButton title="No" decrementCurrentIndex={this.decrementCurrentIndex}/>
+          <AppButton title="No"/>
         </View>
-        <View style={styles.centerItems}>
-          <AppButton title="Previous"/>
+          <View style={styles.centerItems}>
+          <AppButton title="Previous" currentIndex={this.state.currentIndex} decrementCurrentIndex={this.decrementCurrentIndex} />
         </View>
         <View style={[styles.centerItems, styles.textBubbleContainer, styles.bottomContainer]}>
           <TextBubble text={answer} style={{backgroundColor: 'red'}}/>

@@ -5,7 +5,7 @@ export class AppButton extends Component {
   _onPressButton(btnTitle) {
     if (btnTitle === "Yes") {
       this.props.incrementCurrentIndex();
-    } else if (btnTitle === "No") {
+    } else if (btnTitle === "Previous") {
       this.props.decrementCurrentIndex();
     } else {
       return;
@@ -14,10 +14,20 @@ export class AppButton extends Component {
   render() {
     const title = this.props.title;
     const isYesNoButton = title !== "Previous";
+    const yesNoButtonStyles = [styles.button, styles.yesNoButton];
+    const prevButtonStyles = [styles.button, styles.prevButton];
+    const isFirstQuestion = this.props.currentIndex === 0;
+    if (isFirstQuestion) {
+      return (
+        <TouchableOpacity>
+          <Text style={{display: 'none'}}>{title}</Text>
+        </TouchableOpacity>
+      );
+    }
     return (
       <TouchableOpacity
         onPress={(e) => this._onPressButton(this.props.title)}>
-        <Text style={isYesNoButton ? [styles.button, styles.yesNoButton] : [styles.button, styles.prevButton]}>{title}</Text>
+        <Text style={isYesNoButton ? yesNoButtonStyles : prevButtonStyles}>{title}</Text>
       </TouchableOpacity>
     );
   }
@@ -32,6 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   prevButton: {
+    marginTop: 10,
     fontSize: 20,
   }
 });
