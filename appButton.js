@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { Alert, View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { QUESTIONS_AND_ANSWERS } from "./shared/questionsAndAnswers";
 
 export class AppButton extends Component {
   _onPressButton(btnTitle) {
     if (btnTitle === "Yes") {
       this.props.incrementCurrentIndex();
-    } else if (btnTitle === "Previous") {
+      this.props.isLastQuestion();
+    }
+    if (btnTitle === "Previous") {
       this.props.decrementCurrentIndex();
+      this.props.isFirstQuestion();
     } else {
       return;
     }
@@ -17,6 +21,7 @@ export class AppButton extends Component {
     const yesNoButtonStyles = [styles.button, styles.yesNoButton];
     const prevButtonStyles = [styles.button, styles.prevButton];
     const isFirstQuestion = this.props.currentIndex === 0;
+    const isLastQuestion = this.props.currentIndex === QUESTIONS_AND_ANSWERS.length - 1;
     if (isFirstQuestion) {
       return (
         <TouchableOpacity>

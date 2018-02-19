@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Alert } from 'react-native';
 import TextBubble from './textBubble';
 import { AppButton } from './appButton';
-import { QUESTIONS_AND_ANSWERS, FINAL_ANSWER } from "./shared/questionsAndAnswers";
+import { QUESTIONS_AND_ANSWERS } from "./shared/questionsAndAnswers";
 
 export default class App extends Component {
   constructor(props) {
@@ -27,19 +27,32 @@ export default class App extends Component {
   }
 
   render() {
-    let question = QUESTIONS_AND_ANSWERS[this.state.currentIndex].question;
-    let answer = QUESTIONS_AND_ANSWERS[this.state.currentIndex].answer;
+    let i = this.state.currentIndex;
+    let question = QUESTIONS_AND_ANSWERS[i].question;
+    let answer = QUESTIONS_AND_ANSWERS[i].answer;
+
     return (
       <View style={styles.container}>
         <View style={[styles.centerItems, styles.textBubbleContainer, styles.topContainer]}>
           <TextBubble text={question} currentIndex={this.state.currentIndex}/>
         </View>
         <View style={[styles.centerItems, styles.buttonContainer]}>
-          <AppButton title="Yes" incrementCurrentIndex={this.incrementCurrentIndex}/>
-          <AppButton title="No"/>
+          <AppButton
+            title="Yes"
+            incrementCurrentIndex={this.incrementCurrentIndex}
+            currentIndex={this.state.currentIndex}
+          />
+          <AppButton
+            title="No"
+            currentIndex={this.state.currentIndex}
+          />
         </View>
           <View style={styles.centerItems}>
-          <AppButton title="Previous" currentIndex={this.state.currentIndex} decrementCurrentIndex={this.decrementCurrentIndex} />
+          <AppButton
+            title="Previous"
+            currentIndex={this.state.currentIndex}
+            decrementCurrentIndex={this.decrementCurrentIndex}
+          />
         </View>
         <View style={[styles.centerItems, styles.textBubbleContainer, styles.bottomContainer]}>
           <TextBubble text={answer} style={{backgroundColor: 'red'}}/>
