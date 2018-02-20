@@ -12,13 +12,15 @@ export class AppButton extends Component {
     };
   };
   render() {
+    const isYesNoButton = this.props.title === "Yes" || this.props.title === "No";
     const isFirstQuestion = this.props.currentIndex === 0;
     const isLastQuestion = this.props.currentIndex === QUESTIONS_AND_ANSWERS.length - 1;
-
-    const isYesNoButton = this.props.title !== "Previous";
     const yesNoButtonStyles = [styles.button, styles.yesNoButton];
     const prevButtonStyles = [styles.button, styles.prevButton];
 
+    if ((isYesNoButton && isLastQuestion) || (!isYesNoButton && isFirstQuestion)) {
+      return null;
+    }
     return (
       <TouchableOpacity
         onPress={(e) => this._onPressButton(this.props.title, this.props.currentIndex)}>
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
   },
   yesNoButton: {
     fontSize: 40,
+    fontWeight: 'bold',
   },
   prevButton: {
     marginTop: 10,
